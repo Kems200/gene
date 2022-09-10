@@ -1,0 +1,52 @@
+function leastFrequent(arr, n) {
+    let res = null
+    let objlist = {};
+    let objtrack = [];
+    let objg = {};
+    for (let i = 0; i < arr.length; i++) {
+        if (!objtrack.includes(arr[i])) {
+            objtrack.push(arr[i]);
+            objlist[arr[i]] = {
+                "valued": arr[i],
+                "amt": 1
+            };
+        } else {
+            objlist[arr[i]] = {
+                "valued": arr[i],
+                "amt": objlist[arr[i]]['amt'] + 1
+            };
+        }
+    }
+    Object.entries(objlist).forEach(key => {
+        objg[key[1].amt] = key[1].valued
+    });
+    objlist = objg;
+    let j = 1;
+    rearest = null;
+    Object.entries(objlist).forEach(key => {
+        if (j === n) {
+            rearest = key[1]
+            j++
+        }
+        j++
+    });
+    if (rearest == null) {
+        rearest = 'not found';
+        // rearest = Object.values(objlist)[Object.keys(objlist).length - 1];
+    }
+    return rearest;
+}
+function sortobj(obj, keyobj) {
+    const order = [], res = {};
+    Object.keys(obj).forEach(key => {
+        return order[obj[key][keyobj] - 1] = key;
+    });
+    order.forEach(key => {
+        res[key] = obj[key];
+    });
+    console.log(order);
+    return res;
+}
+
+ans=leastFrequent([5,5,5],1);
+console.log(ans);
